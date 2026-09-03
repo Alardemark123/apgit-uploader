@@ -5,6 +5,10 @@ export const SESSION_COOKIE = "uploader_session";
 
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
+export function hasConfiguredPassword(): boolean {
+  return Boolean(process.env.UPLOADER_PASSWORD?.trim());
+}
+
 function getPassword(): string {
   const password = process.env.UPLOADER_PASSWORD;
   if (!password) {

@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import {
   clearSessionResponse,
   createSessionResponse,
+  hasConfiguredPassword,
   verifyPassword,
   verifySession,
 } from "@/lib/auth";
@@ -17,6 +18,16 @@ export async function POST(request: NextRequest) {
   const password = body.password ?? "";
   if (!password) {
     return NextResponse.json({ error: "Password required" }, { status: 400 });
+  }
+
+  if (!hasConfiguredPassword()) {
+    return NextResponse.json(
+      {
+        error:
+          "UPLOADER_PASSWORD is not configured in the deployment environment.",
+      },
+      { status: 500 }
+    );
   }
 
   if (!verifyPassword(password)) {
