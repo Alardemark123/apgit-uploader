@@ -1,0 +1,54 @@
+{
+  "sites": [
+    {
+      "id": "detoxicare",
+      "label": "Detoxicare",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "natrapharm",
+      "label": "Natrapharm",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "prime-dialysis",
+      "label": "Prime Dialysis",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "mediko-kapitolyo",
+      "label": "Mediko Kapitolyo",
+      "folders": ["articles", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "metrodocs",
+      "label": "Metrodocs Hospital",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "molecularlabph",
+      "label": "Molecular Lab PH",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "gc-hemodynamix",
+      "label": "GC Hemodynamix",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "health-prescription",
+      "label": "Health Prescription",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "prime-health",
+      "label": "Prime Health",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    },
+    {
+      "id": "rx-solutions",
+      "label": "RX Solutions",
+      "folders": ["articles", "products", "images", "logo", "heroes", "misc"]
+    }
+  ]
+}
