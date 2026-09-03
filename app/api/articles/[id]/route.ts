@@ -4,6 +4,7 @@ import { findSite, loadSitesConfig } from "@/lib/config";
 import { deleteArticle, getArticle } from "@/lib/articles";
 import { sanitizeSlug } from "@/lib/slug";
 
+
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(request: NextRequest, context: Ctx) {
