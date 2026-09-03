@@ -22,11 +22,28 @@ function getCredentials(): object | undefined {
   }
 }
 
+function hasCredentialFilePath(): boolean {
+  return Boolean(process.env.GOOGLE_APPLICATION_CREDENTIALS?.trim());
+}
+
+function isVercelRuntime(): boolean {
+  return process.env.VERCEL === "1" || Boolean(process.env.VERCEL_ENV);
+}
+
 export function getStorage(): Storage {
   if (storage) return storage;
 
   const credentials = getCredentials();
   const projectId = process.env.GCS_PROJECT_ID?.trim();
+
+  // Vercel/serverless environments do not usually have ADC available, so fail fast
+  // with a deploy-actionable message instead of the generic Google auth error.
+  if (!credentials && !hasCredentialFilePath() && isVercelRuntime()) {
+    throw new Error(
+      "Missing GOOGLE_APPLICATION_CREDENTIALS_JSON in Vercel environment variables. " +
+        "Add the full Google service-account JSON in Project Settings -> Environment Variables, then redeploy."
+    );
+  }
 
   storage = new Storage({
     ...(projectId ? { projectId } : {}),

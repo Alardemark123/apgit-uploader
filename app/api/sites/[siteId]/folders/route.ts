@@ -3,14 +3,14 @@ import { requireAuth } from "@/lib/auth";
 import { addFolder } from "@/lib/config";
 
 type RouteContext = {
-  params: { siteId: string };
+  params: Promise<{ siteId: string }>;
 };
 
 export async function POST(request: NextRequest, context: RouteContext) {
   const unauthorized = requireAuth(request);
   if (unauthorized) return unauthorized;
 
-  const siteId = context.params.siteId;
+  const { siteId } = await context.params;
 
   let body: { folder?: string };
   try {

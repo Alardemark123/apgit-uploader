@@ -4,7 +4,7 @@ import { findSite, loadSitesConfig } from "@/lib/config";
 import { deleteArticle, getArticle } from "@/lib/articles";
 import { sanitizeSlug } from "@/lib/slug";
 
-type Ctx = { params: { id: string } };
+type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(request: NextRequest, context: Ctx) {
   const unauthorized = requireAuth(request);
@@ -18,8 +18,9 @@ export async function GET(request: NextRequest, context: Ctx) {
   let siteId: string;
   let articleId: string;
   try {
+    const { id } = await context.params;
     siteId = sanitizeSlug(siteRaw);
-    articleId = sanitizeSlug(context.params.id);
+    articleId = sanitizeSlug(id);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Invalid id";
     return NextResponse.json({ error: message }, { status: 400 });
@@ -54,8 +55,9 @@ export async function DELETE(request: NextRequest, context: Ctx) {
   let siteId: string;
   let articleId: string;
   try {
+    const { id } = await context.params;
     siteId = sanitizeSlug(siteRaw);
-    articleId = sanitizeSlug(context.params.id);
+    articleId = sanitizeSlug(id);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Invalid id";
     return NextResponse.json({ error: message }, { status: 400 });

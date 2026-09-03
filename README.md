@@ -111,6 +111,8 @@ Sites and folders are defined in config shaped as:
 3. Ensure the service account in `GOOGLE_APPLICATION_CREDENTIALS_JSON` can create/read/write the bucket (see **Service account permissions** above). On first deploy, use the dashboard **Create bucket** flow or pre-create the bucket in GCP.
 4. Deploy. No special build command is required beyond `next build` / `next start` (Vercel defaults).
 
+If the app shows `Could not load the default credentials`, Vercel is not receiving usable Google credentials. In this app that almost always means `GOOGLE_APPLICATION_CREDENTIALS_JSON` is missing or empty in the deployed environment.
+
 ## Scripts
 
 - `npm run dev` — development
